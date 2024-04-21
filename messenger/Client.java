@@ -55,7 +55,7 @@ private void CreateGUI()
     mesgArea.setFont(font);
 
     //design header
-    ImageIcon icon = new ImageIcon("./assets/blogo.png");
+    ImageIcon icon = new ImageIcon("../assets/logo.png");
     int wid = 60, high = 60;
     Image im = icon.getImage().getScaledInstance(wid, high, Image.SCALE_SMOOTH);
     header.setIcon(new ImageIcon(im));
@@ -133,7 +133,7 @@ public void runevent() {
         write.flush();
         mesgInput.setText(null);
         mesgInput.requestFocus();
-        if (content.equals("exit")) {
+        if (content.equals("\\exit")) {
             try {
                 JOptionPane.showMessageDialog(null, "You ended this chat");
                 mesgInput.setEditable(false);
@@ -158,7 +158,7 @@ public void  Readdata()
 
                     String message = read.readLine();
 
-                    if (message.equals("exit")) {
+                    if (message.equals("\\exit")) {
 
                         JOptionPane.showMessageDialog(null, "server terminatied the chat");
                         mesgInput.setEnabled(false);

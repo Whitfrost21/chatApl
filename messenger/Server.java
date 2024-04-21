@@ -28,15 +28,15 @@ public class Server extends JFrame {
 
             read = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
-            write = new PrintWriter(socket.getOutputStream()); 
+            write = new PrintWriter(socket.getOutputStream());
 
             CreateGUI();
             handleIO();
             Readdata();
-         
+
 
         } catch (Exception e) {
-            
+
             e.printStackTrace();
         }
     }
@@ -44,18 +44,19 @@ public class Server extends JFrame {
 private void CreateGUI()
 {
     //design the swing
-    this.setTitle("Server Side");        
+    this.setTitle("Server Side");
     this.setSize(600,600);
     this.setLocationRelativeTo(null);
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    this.setBackground(Color.decode("#888888"));
 
     //set fonts
     header.setFont(font);
     mesgInput.setFont(font);
     mesgArea.setFont(font);
-    
+
     //set location of header
-    ImageIcon icon = new ImageIcon("blogo.png");
+    ImageIcon icon = new ImageIcon("../assets/logo.png");
     int wid = 60, high = 60;
     Image im = icon.getImage().getScaledInstance(wid, high, Image.SCALE_SMOOTH);
     header.setIcon(new ImageIcon(im));
@@ -64,8 +65,8 @@ private void CreateGUI()
     header.setHorizontalAlignment(SwingConstants.CENTER);
 
     header.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-    
-    
+
+
 
     //set area uneditable and move to center
     mesgArea.setEditable(false);
@@ -90,7 +91,7 @@ private void CreateGUI()
     js.getViewport().setViewPosition(new Point(0, yPosition));
     this.add(js,BorderLayout.CENTER);
     this.add(jp,BorderLayout.SOUTH);
-   
+
 
     this.setVisible(true);
     }
@@ -105,20 +106,20 @@ private void handleIO(){
                 });
                 mesgInput.addKeyListener(new KeyListener(){
                     public void keyTyped(KeyEvent e) {
-                        
+
                     }
-                
+
                     public void keyPressed(KeyEvent e) {
-                       
+
                     }
-            
+
                     public void keyReleased(KeyEvent e) {
                         if(e.getKeyCode()==10)
-                        { 
+                        {
                             startevent();
             }}
         });
-       
+
     }
 
     public void startevent() {
@@ -132,7 +133,7 @@ private void handleIO(){
             write.flush();
             mesgInput.setText(null);
             mesgInput.requestFocus();
-            if (content.equals("exit")) {
+            if (content.equals("\\exit")) {
                 try {
                     JOptionPane.showMessageDialog(null, "You ended this chat");
                     mesgInput.setEditable(false);
@@ -151,18 +152,18 @@ public void  Readdata()
         Runnable r1=new Runnable() {
         @Override
         public void run()
-         {        
-    
+         {
+
              System.out.println("reader started");
 
             try {
-        
+
                  while (!socket.isClosed())
                   {
-        
+
                         String message = read.readLine();
 
-                        if(message.equals("exit"))
+                        if(message.equals("\\exit"))
                         {
                             JOptionPane.showMessageDialog(null,"Client terminated the chat");
                             mesgInput.setEnabled(false);
@@ -171,13 +172,13 @@ public void  Readdata()
                             break;
                         }
 
-                         mesgArea.append("Client:"+message+"\n");
+                         mesgArea.append("Client: "+message+"\n");
                  }
                 } catch (Exception e) {
 
                     System.out.println("connection terminated");
                 }
-                 
+
         }
 };
         Thread run = new Thread(r1);
