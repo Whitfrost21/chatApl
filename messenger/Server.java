@@ -16,7 +16,7 @@ public class Server extends JFrame {
     private JLabel header = new JLabel("Server side");
     private JTextField mesgInput= new JTextField(20);
     private JTextArea mesgArea = new JTextArea();
-    private Font font= new Font("Roboto",Font.BOLD,25);
+    private Font font= new Font("Times New Roman",Font.BOLD,25);
     private JButton jbut = new JButton("Send");
 
     public Server(){
@@ -128,7 +128,7 @@ private void handleIO(){
             JOptionPane.showMessageDialog(null, "cannot send empty message");
 
         } else {
-            mesgArea.append("Me:" + content + "\n");
+            mesgArea.append("Me: " + content + "\n");
             write.println(content);
             write.flush();
             mesgInput.setText(null);

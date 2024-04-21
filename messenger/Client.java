@@ -14,7 +14,7 @@ public class Client extends JFrame
         private JLabel header = new JLabel("Client side");
         private JTextField mesgInput = new JTextField(20);
         private JTextArea mesgArea = new JTextArea();
-        private Font font = new Font("Roboto", Font.BOLD, 25);
+        private Font font = new Font("Times New Roman", Font.BOLD, 25);
         private JButton jbut = new JButton("Sent");
     public Client()
     {
@@ -128,7 +128,7 @@ public void runevent() {
     if (content.equals("")) {
         JOptionPane.showMessageDialog(null, "cannot send empty message");
     } else {
-        mesgArea.append("Me:" + content + "\n");
+        mesgArea.append("Me: " + content + "\n");
         write.println(content);
         write.flush();
         mesgInput.setText(null);
@@ -167,7 +167,7 @@ public void  Readdata()
                         break;
                     }
 
-                    mesgArea.append("server:" + message + "\n");
+                    mesgArea.append("Server: " + message + "\n");
                 }
             } catch (Exception e) {
                 System.out.println("connection terminated");
