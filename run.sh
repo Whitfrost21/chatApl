@@ -1,7 +1,7 @@
 #!/bin/sh
 
 mkdir -p ./bin
-cd ./messenger/
+cd ./src/
 javac -d ../bin/ "Client.java"
 javac -d ../bin/ "Server.java"
 java -cp ../bin/ "Server" $* &

@@ -1,6 +1,6 @@
 @echo off
 mkdir bin
-cd messenger
+cd src
 javac -d ../bin/ Client.java
 javac -d ../bin/ Server.java
 start java -cp ../bin/ Server %*
