@@ -21,7 +21,7 @@ public class Server extends JFrame {
 
     public Server(){
         try {
-             server=new ServerSocket(5551);
+            server=new ServerSocket(5551);
             System.out.println("server is ready for connection ");
             System.out.println("waiting for response...");
             socket = server.accept();
@@ -41,83 +41,83 @@ public class Server extends JFrame {
         }
     }
 
-private void CreateGUI()
+    private void CreateGUI()
 {
-    //design the swing
-    this.setTitle("Server Side");
-    this.setSize(600,600);
-    this.setLocationRelativeTo(null);
-    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    this.setBackground(Color.decode("#888888"));
+        //design the swing
+        this.setTitle("Server Side");
+        this.setSize(600,600);
+        this.setLocationRelativeTo(null);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setBackground(Color.decode("#888888"));
 
-    //set fonts
-    header.setFont(font);
-    mesgInput.setFont(font);
-    mesgArea.setFont(font);
+        //set fonts
+        header.setFont(font);
+        mesgInput.setFont(font);
+        mesgArea.setFont(font);
 
-    //set location of header
-    ImageIcon icon = new ImageIcon("../assets/logo.png");
-    int wid = 60, high = 60;
-    Image im = icon.getImage().getScaledInstance(wid, high, Image.SCALE_SMOOTH);
-    header.setIcon(new ImageIcon(im));
-    header.setHorizontalTextPosition(SwingConstants.CENTER);
-    header.setVerticalTextPosition(SwingConstants.BOTTOM);
-    header.setHorizontalAlignment(SwingConstants.CENTER);
+        //set location of header
+        ImageIcon icon = new ImageIcon("../assets/logo.png");
+        int wid = 60, high = 60;
+        Image im = icon.getImage().getScaledInstance(wid, high, Image.SCALE_SMOOTH);
+        header.setIcon(new ImageIcon(im));
+        header.setHorizontalTextPosition(SwingConstants.CENTER);
+        header.setVerticalTextPosition(SwingConstants.BOTTOM);
+        header.setHorizontalAlignment(SwingConstants.CENTER);
 
-    header.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-
-
-
-    //set area uneditable and move to center
-    mesgArea.setEditable(false);
-    mesgArea.requestFocus();
-    mesgInput.setHorizontalAlignment(SwingConstants.CENTER);
-    jbut.setHorizontalAlignment(SwingConstants.RIGHT);
-    jbut.setSize(40,40);
-    JPanel jp = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-    jp.add(mesgInput);
-    jp.add(jbut);
+        header.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
 
-    //frame
-    this.setLayout(new BorderLayout());
-    this.add(header, BorderLayout.NORTH);
-    //add components
-    this.add(header,BorderLayout.NORTH);
-    JScrollPane js = new JScrollPane(mesgArea);
-    Dimension viewportSize = js.getViewport().getSize();
-    Dimension documentSize = mesgArea.getPreferredSize();
-    int yPosition = documentSize.height - viewportSize.height;
-    js.getViewport().setViewPosition(new Point(0, yPosition));
-    this.add(js,BorderLayout.CENTER);
-    this.add(jp,BorderLayout.SOUTH);
+
+        //set area uneditable and move to center
+        mesgArea.setEditable(false);
+        mesgArea.requestFocus();
+        mesgInput.setHorizontalAlignment(SwingConstants.CENTER);
+        jbut.setHorizontalAlignment(SwingConstants.RIGHT);
+        jbut.setSize(40,40);
+        JPanel jp = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+        jp.add(mesgInput);
+        jp.add(jbut);
 
 
-    this.setVisible(true);
+        //frame
+        this.setLayout(new BorderLayout());
+        this.add(header, BorderLayout.NORTH);
+        //add components
+        this.add(header,BorderLayout.NORTH);
+        JScrollPane js = new JScrollPane(mesgArea);
+        Dimension viewportSize = js.getViewport().getSize();
+        Dimension documentSize = mesgArea.getPreferredSize();
+        int yPosition = documentSize.height - viewportSize.height;
+        js.getViewport().setViewPosition(new Point(0, yPosition));
+        this.add(js,BorderLayout.CENTER);
+        this.add(jp,BorderLayout.SOUTH);
+
+
+        this.setVisible(true);
     }
 
-private void handleIO(){
-    jbut.addActionListener(new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent a){
+    private void handleIO(){
+        jbut.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent a){
 
-                        startevent();
-                    }
-                });
-                mesgInput.addKeyListener(new KeyListener(){
-                    public void keyTyped(KeyEvent e) {
+                startevent();
+            }
+        });
+        mesgInput.addKeyListener(new KeyListener(){
+            public void keyTyped(KeyEvent e) {
 
-                    }
+            }
 
-                    public void keyPressed(KeyEvent e) {
+            public void keyPressed(KeyEvent e) {
 
-                    }
+            }
 
-                    public void keyReleased(KeyEvent e) {
-                        if(e.getKeyCode()==10)
-                        {
-                            startevent();
-            }}
+            public void keyReleased(KeyEvent e) {
+                if(e.getKeyCode()==10)
+            {
+                    startevent();
+                }}
         });
 
     }
@@ -147,24 +147,24 @@ private void handleIO(){
         }
     }
 
-public void  Readdata()
-    {
+    public void  Readdata()
+{
         Runnable r1=new Runnable() {
-        @Override
-        public void run()
-         {
+            @Override
+            public void run()
+        {
 
-             System.out.println("reader started");
+                System.out.println("reader started");
 
-            try {
+                try {
 
-                 while (!socket.isClosed())
-                  {
+                    while (!socket.isClosed())
+                {
 
                         String message = read.readLine();
 
                         if(message.equals("\\exit"))
-                        {
+                    {
                             JOptionPane.showMessageDialog(null,"Client terminated the chat");
                             mesgInput.setEnabled(false);
                             blockframe();
@@ -172,22 +172,22 @@ public void  Readdata()
                             break;
                         }
 
-                         mesgArea.append("Client: "+message+"\n");
-                 }
+                        mesgArea.append("Client: "+message+"\n");
+                    }
                 } catch (Exception e) {
 
                     System.out.println("connection terminated");
                 }
 
-        }
-};
+            }
+        };
         Thread run = new Thread(r1);
         run.start();
-}
+    }
 
-public void blockframe() {
-    this.dispose();
-}
+    public void blockframe() {
+        this.dispose();
+    }
 
     public static void main(String[] args) {
         System.out.println("this is server...going to start server");
