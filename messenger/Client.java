@@ -19,7 +19,7 @@ public class Client extends JFrame
     public Client()
     {
         try {
-            
+
             System.out.println("waiting for server...");
             socket=new Socket("127.0.0.1",5551);
             System.out.println("connection done ");
@@ -31,7 +31,7 @@ public class Client extends JFrame
             CreateGUI();
             handleIO();
             Readdata();
-           
+
 
 
              } catch (Exception e)
@@ -39,12 +39,12 @@ public class Client extends JFrame
                 e.printStackTrace();
              }
 
-    }    
+    }
 
 private void CreateGUI()
 {
     //design the jframe
-    this.setTitle("Client Side");        
+    this.setTitle("Client Side");
     this.setSize(600,600);
     this.setLocationRelativeTo(null);
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -55,7 +55,7 @@ private void CreateGUI()
     mesgArea.setFont(font);
 
     //design header
-    ImageIcon icon = new ImageIcon("blogo.png");
+    ImageIcon icon = new ImageIcon("./assets/blogo.png");
     int wid = 60, high = 60;
     Image im = icon.getImage().getScaledInstance(wid, high, Image.SCALE_SMOOTH);
     header.setIcon(new ImageIcon(im));
@@ -63,8 +63,8 @@ private void CreateGUI()
     header.setVerticalTextPosition(SwingConstants.BOTTOM);
     header.setHorizontalAlignment(SwingConstants.CENTER);
     header.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-    
-    
+
+
 
     //set area uneditable and move to center
     mesgArea.setEditable(false);
@@ -90,14 +90,14 @@ private void CreateGUI()
     js.getViewport().setViewPosition(new Point(0, yPosition));
     this.add(js, BorderLayout.CENTER);
     this.add(jp, BorderLayout.SOUTH);
-    
+
 
 
     this.setVisible(true);
     }
 
 public void handleIO() {
-    
+
     jbut.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent a){
@@ -107,17 +107,17 @@ public void handleIO() {
     });
     mesgInput.addKeyListener(new KeyListener(){
         public void keyTyped(KeyEvent e) {
-            
+
         }
-    
+
         public void keyPressed(KeyEvent e) {
-           
+
         }
 
         public void keyReleased(KeyEvent e) {
             if(e.getKeyCode()==10)
-            { 
-                runevent();  
+            {
+                runevent();
             }
         }
     });
@@ -159,7 +159,7 @@ public void  Readdata()
                     String message = read.readLine();
 
                     if (message.equals("exit")) {
-                        
+
                         JOptionPane.showMessageDialog(null, "server terminatied the chat");
                         mesgInput.setEnabled(false);
                         blockframe();
