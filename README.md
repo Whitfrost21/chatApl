@@ -4,7 +4,7 @@ chatApl is a simple mine java project which defines the interaction between Clie
 ## Installation
 
 ```bash
-  $ git clone --depth=1 https://github.com/pz2100/chatApl
+  $ git clone --depth=1 https://github.com/Whitfrost21/chatApl
   $ cd chatApl
   $ ./run.sh
   ```
